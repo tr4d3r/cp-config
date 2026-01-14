@@ -1,0 +1,204 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Initialize Go Project Structure",
+      "description": "Set up the Go module and create the basic project directory structure including cmd/, internal/, agents/, skills/, and profiles/ directories.",
+      "status": "done",
+      "priority": "high",
+      "dependencies": [],
+      "details": "Create go.mod with module name 'github.com/griffin/cp-config', set up directory structure as defined in PRD, add .gitignore for Go projects.",
+      "updatedAt": "2026-01-14T00:15:20.392Z",
+      "subtasks": []
+    },
+    {
+      "id": "2",
+      "title": "Implement Configuration Types and Models",
+      "description": "Define Go structs for agents, skills, profiles, and application configuration.",
+      "status": "done",
+      "priority": "high",
+      "dependencies": [
+        "1"
+      ],
+      "details": "Create internal/config package with types for AgentConfig, SkillConfig, ProfileConfig, and AppConfig. Include YAML/JSON struct tags.",
+      "subtasks": [],
+      "updatedAt": "2026-01-14T00:19:05.652Z"
+    },
+    {
+      "id": "3",
+      "title": "Implement Configuration File Parser",
+      "description": "Create functions to parse agent and skill markdown files with frontmatter, and profile YAML files.",
+      "status": "done",
+      "priority": "high",
+      "dependencies": [
+        "2"
+      ],
+      "details": "Use goldmark or similar for markdown parsing, gopkg.in/yaml.v3 for YAML. Handle frontmatter extraction from .md files.",
+      "subtasks": [],
+      "updatedAt": "2026-01-14T00:23:41.834Z"
+    },
+    {
+      "id": "4",
+      "title": "Implement GitHub Directory Operations",
+      "description": "Create internal/github package to handle operations on ~/.github/copilot directory.",
+      "status": "done",
+      "priority": "high",
+      "dependencies": [
+        "2"
+      ],
+      "details": "Functions for reading, writing, listing, and managing files in ~/.github/copilot/agents and ~/.github/copilot/skills directories.",
+      "subtasks": [],
+      "updatedAt": "2026-01-14T00:26:20.848Z"
+    },
+    {
+      "id": "5",
+      "title": "Implement Profile Management",
+      "description": "Create internal/profile package for managing configuration profiles.",
+      "status": "pending",
+      "priority": "medium",
+      "dependencies": [
+        "2",
+        "3"
+      ],
+      "details": "Support creating, switching, listing, and deleting profiles. Store active profile state. Handle include/exclude lists for agents and skills.",
+      "subtasks": []
+    },
+    {
+      "id": "6",
+      "title": "Set Up CLI Framework with Cobra",
+      "description": "Initialize the CLI application using cobra for command handling.",
+      "status": "pending",
+      "priority": "high",
+      "dependencies": [
+        "1"
+      ],
+      "details": "Set up cmd/cp-config/main.go with root command, version flag, and help text. Configure cobra for subcommand structure.",
+      "subtasks": []
+    },
+    {
+      "id": "7",
+      "title": "Implement 'list' Command",
+      "description": "Add command to list available agents and skills from the repository.",
+      "status": "pending",
+      "priority": "medium",
+      "dependencies": [
+        "3",
+        "6"
+      ],
+      "details": "cp-config list [agents|skills] - Display available configurations with their metadata. Support filtering by type.",
+      "subtasks": []
+    },
+    {
+      "id": "8",
+      "title": "Implement 'install' Command",
+      "description": "Add command to deploy configurations to ~/.github directory.",
+      "status": "pending",
+      "priority": "high",
+      "dependencies": [
+        "4",
+        "5",
+        "6"
+      ],
+      "details": "cp-config install [--profile <name>] - Copy agent and skill files to target directory. Respect profile include/exclude settings.",
+      "subtasks": []
+    },
+    {
+      "id": "9",
+      "title": "Implement 'add' and 'remove' Commands",
+      "description": "Add commands to create new configurations and remove existing ones.",
+      "status": "pending",
+      "priority": "medium",
+      "dependencies": [
+        "3",
+        "6"
+      ],
+      "details": "cp-config add <type> <name> - Create new agent/skill from template. cp-config remove <type> <name> - Delete configuration file.",
+      "subtasks": []
+    },
+    {
+      "id": "10",
+      "title": "Implement 'diff' Command",
+      "description": "Add command to show differences between repo and installed configurations.",
+      "status": "pending",
+      "priority": "medium",
+      "dependencies": [
+        "4",
+        "6"
+      ],
+      "details": "cp-config diff [--profile <name>] - Compare files in repo vs ~/.github. Show added, modified, and removed files.",
+      "subtasks": []
+    },
+    {
+      "id": "11",
+      "title": "Implement 'sync' Command",
+      "description": "Add command for bidirectional sync between repo and installed configs.",
+      "status": "pending",
+      "priority": "medium",
+      "dependencies": [
+        "10"
+      ],
+      "details": "cp-config sync [--profile <name>] - Sync changes in both directions. Prompt for conflict resolution.",
+      "subtasks": []
+    },
+    {
+      "id": "12",
+      "title": "Implement 'backup' and 'restore' Commands",
+      "description": "Add commands to backup and restore ~/.github configurations.",
+      "status": "pending",
+      "priority": "medium",
+      "dependencies": [
+        "4",
+        "6"
+      ],
+      "details": "cp-config backup [--output <path>] - Create timestamped backup archive. cp-config restore <path> - Restore from backup.",
+      "subtasks": []
+    },
+    {
+      "id": "13",
+      "title": "Implement Profile Subcommands",
+      "description": "Add profile management subcommands (list, create, switch, delete).",
+      "status": "pending",
+      "priority": "medium",
+      "dependencies": [
+        "5",
+        "6"
+      ],
+      "details": "cp-config profile list|create|switch|delete - Full profile lifecycle management.",
+      "subtasks": []
+    },
+    {
+      "id": "14",
+      "title": "Implement 'init' and 'validate' Commands",
+      "description": "Add commands to initialize new repos and validate configuration files.",
+      "status": "pending",
+      "priority": "low",
+      "dependencies": [
+        "3",
+        "6"
+      ],
+      "details": "cp-config init - Create new cp-config repo structure. cp-config validate - Check all config files for errors.",
+      "subtasks": []
+    },
+    {
+      "id": "15",
+      "title": "Add Cross-Platform Build and Release",
+      "description": "Set up Makefile and GitHub Actions for cross-platform builds.",
+      "status": "pending",
+      "priority": "low",
+      "dependencies": [
+        "8"
+      ],
+      "details": "Create Makefile with build targets for darwin/linux/windows. Add GitHub Actions workflow for releases.",
+      "subtasks": []
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastModified": "2026-01-14T00:26:20.848Z",
+    "taskCount": 15,
+    "completedCount": 4,
+    "tags": [
+      "master"
+    ]
+  }
+}

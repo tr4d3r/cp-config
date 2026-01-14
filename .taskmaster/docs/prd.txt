@@ -1,0 +1,127 @@
+# cp-config - GitHub Copilot Configuration Manager
+
+## Overview
+cp-config is a CLI tool written in Go that manages GitHub Copilot global agent and skill configurations. It enables source-controlled management of Copilot configurations with deployment to the user's ~/.github directory, supporting sharing and versioning of agents and skills across machines and teams.
+
+## Goals
+1. Source control Copilot agent and skill configurations in a Git repository
+2. Provide CLI commands to manage, sync, and deploy configurations
+3. Support multiple named profiles (e.g., work, personal, project-specific)
+4. Follow Gitflow branching strategy for configuration development
+5. Enable easy sharing and collaboration on configurations
+
+## Technical Requirements
+- Language: Go 1.21+
+- Build: Standard Go modules
+- Target: Cross-platform (macOS, Linux, Windows)
+- Configuration format: YAML/JSON (matching Copilot's expected formats)
+
+## Repository Structure
+```
+cp-config/
+├── agents/                    # Agent configuration files
+│   └── {agent-name}.md       # Individual agent definitions
+├── skills/                    # Skill configuration files
+│   └── {skill-name}.md       # Individual skill definitions
+├── profiles/                  # Profile configurations
+│   └── {profile-name}.yaml   # Profile-specific settings
+├── cmd/                       # CLI command implementations
+│   └── cp-config/
+│       └── main.go
+├── internal/                  # Internal packages
+│   ├── config/               # Configuration management
+│   ├── profile/              # Profile handling
+│   ├── sync/                 # Sync operations
+│   └── github/               # GitHub directory operations
+├── go.mod
+├── go.sum
+└── README.md
+```
+
+## Target Directory Structure
+Configurations are deployed to:
+```
+~/.github/
+├── copilot/
+│   ├── agents/
+│   │   └── {agent-name}.md
+│   └── skills/
+│       └── {skill-name}.md
+```
+
+## CLI Commands
+
+### Core Commands
+1. `cp-config install [--profile <name>]` - Deploy configurations to ~/.github
+2. `cp-config list [agents|skills]` - List available configurations
+3. `cp-config add <type> <name>` - Add a new agent or skill configuration
+4. `cp-config remove <type> <name>` - Remove a configuration
+
+### Sync Commands
+5. `cp-config sync [--profile <name>]` - Sync configurations bidirectionally
+6. `cp-config diff [--profile <name>]` - Show differences between repo and installed configs
+7. `cp-config backup [--output <path>]` - Backup current ~/.github configurations
+8. `cp-config restore <backup-path>` - Restore from a backup
+
+### Profile Commands
+9. `cp-config profile list` - List available profiles
+10. `cp-config profile create <name>` - Create a new profile
+11. `cp-config profile switch <name>` - Switch active profile
+12. `cp-config profile delete <name>` - Delete a profile
+
+### Utility Commands
+13. `cp-config init` - Initialize a new cp-config repository
+14. `cp-config validate` - Validate all configuration files
+15. `cp-config version` - Display version information
+
+## Profile System
+- Profiles allow different sets of configurations for different contexts
+- Default profile is "default"
+- Profile configuration stored in profiles/{name}.yaml
+- Profile config includes:
+  - List of agents to include/exclude
+  - List of skills to include/exclude
+  - Custom overrides or variables
+
+## Configuration File Formats
+
+### Agent Configuration (agents/{name}.md)
+Markdown files following GitHub Copilot agent format with frontmatter for metadata.
+
+### Skill Configuration (skills/{name}.md)
+Markdown files following GitHub Copilot skill format with frontmatter for metadata.
+
+### Profile Configuration (profiles/{name}.yaml)
+```yaml
+name: work
+description: Work-related configurations
+agents:
+  include:
+    - code-reviewer
+    - documentation-helper
+  exclude: []
+skills:
+  include:
+    - api-design
+    - testing
+  exclude: []
+```
+
+## Gitflow Integration
+- main: Production-ready configurations
+- develop: Integration branch for new configurations
+- feature/*: New agent or skill development
+- release/*: Release preparation
+- hotfix/*: Quick fixes to production configs
+
+## Error Handling
+- Validate configurations before deployment
+- Create automatic backups before sync/install operations
+- Provide clear error messages with suggested fixes
+- Support dry-run mode for destructive operations
+
+## Future Considerations (Out of Scope for v1)
+- Team sharing via Git remotes
+- Configuration templates
+- Plugin system for custom validators
+- GUI/TUI interface
