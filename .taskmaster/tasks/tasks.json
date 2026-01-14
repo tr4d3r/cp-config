@@ -94,7 +94,7 @@
       "id": "8",
       "title": "Implement 'install' Command",
       "description": "Add command to deploy configurations to ~/.github directory.",
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "dependencies": [
         "4",
@@ -102,7 +102,8 @@
         "6"
       ],
       "details": "cp-config install [--profile <name>] - Copy agent and skill files to target directory. Respect profile include/exclude settings.",
-      "subtasks": []
+      "subtasks": [],
+      "updatedAt": "2026-01-14T01:59:55.543Z"
     },
     {
       "id": "9",
@@ -211,9 +212,9 @@
   ],
   "metadata": {
     "version": "1.0.0",
-    "lastModified": "2026-01-14T01:56:55.188Z",
+    "lastModified": "2026-01-14T01:59:55.543Z",
     "taskCount": 16,
-    "completedCount": 8,
+    "completedCount": 9,
     "tags": [
       "master"
     ]

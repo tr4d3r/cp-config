@@ -14,6 +14,12 @@ func (t *Target) DeployAgent(agent *config.AgentConfig) error {
 		return err
 	}
 
+	// If we have the source path, copy the file directly to preserve exact formatting
+	if agent.SourcePath != "" {
+		return t.DeployFromSource(agent.SourcePath, "agents", agent.Name+".md")
+	}
+
+	// Otherwise, format and write
 	content := formatConfigFile(agent.Name, agent.Description, agent.Content)
 	path := t.AgentPath(agent.Name)
 
@@ -30,6 +36,12 @@ func (t *Target) DeploySkill(skill *config.SkillConfig) error {
 		return err
 	}
 
+	// If we have the source path, copy the file directly to preserve exact formatting
+	if skill.SourcePath != "" {
+		return t.DeployFromSource(skill.SourcePath, "skills", skill.Name+".md")
+	}
+
+	// Otherwise, format and write
 	content := formatConfigFile(skill.Name, skill.Description, skill.Content)
 	path := t.SkillPath(skill.Name)
 
