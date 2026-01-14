@@ -121,14 +121,15 @@
       "id": "10",
       "title": "Implement 'diff' Command",
       "description": "Add command to show differences between repo and installed configurations.",
-      "status": "pending",
+      "status": "done",
       "priority": "medium",
       "dependencies": [
         "4",
         "6"
       ],
       "details": "cp-config diff [--profile <name>] - Compare files in repo vs ~/.github. Show added, modified, and removed files.",
-      "subtasks": []
+      "subtasks": [],
+      "updatedAt": "2026-01-14T01:56:55.188Z"
     },
     {
       "id": "11",
@@ -210,9 +211,9 @@
   ],
   "metadata": {
     "version": "1.0.0",
-    "lastModified": "2026-01-14T01:52:02.566Z",
+    "lastModified": "2026-01-14T01:56:55.188Z",
     "taskCount": 16,
-    "completedCount": 7,
+    "completedCount": 8,
     "tags": [
       "master"
     ]
