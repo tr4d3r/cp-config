@@ -67,26 +67,28 @@
       "id": "6",
       "title": "Set Up CLI Framework with Cobra",
       "description": "Initialize the CLI application using cobra for command handling.",
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "dependencies": [
         "1"
       ],
       "details": "Set up cmd/cp-config/main.go with root command, version flag, and help text. Configure cobra for subcommand structure.",
-      "subtasks": []
+      "subtasks": [],
+      "updatedAt": "2026-01-14T00:43:12.263Z"
     },
     {
       "id": "7",
       "title": "Implement 'list' Command",
       "description": "Add command to list available agents and skills from the repository.",
-      "status": "pending",
+      "status": "done",
       "priority": "medium",
       "dependencies": [
         "3",
         "6"
       ],
       "details": "cp-config list [agents|skills] - Display available configurations with their metadata. Support filtering by type.",
-      "subtasks": []
+      "subtasks": [],
+      "updatedAt": "2026-01-14T01:48:28.428Z"
     },
     {
       "id": "8",
@@ -190,13 +192,27 @@
       ],
       "details": "Create Makefile with build targets for darwin/linux/windows. Add GitHub Actions workflow for releases.",
       "subtasks": []
+    },
+    {
+      "id": "16",
+      "title": "Add Usage and Contribution Documentation",
+      "description": "Create README.md with usage documentation and CONTRIBUTING.md with contribution guidelines.",
+      "status": "done",
+      "priority": "medium",
+      "dependencies": [
+        "6",
+        "7"
+      ],
+      "details": "README.md: Installation instructions, command reference, examples, configuration format. CONTRIBUTING.md: Development setup, code style, testing, PR process.",
+      "subtasks": [],
+      "updatedAt": "2026-01-14T01:52:02.566Z"
     }
   ],
   "metadata": {
     "version": "1.0.0",
-    "lastModified": "2026-01-14T00:26:20.848Z",
-    "taskCount": 15,
-    "completedCount": 4,
+    "lastModified": "2026-01-14T01:52:02.566Z",
+    "taskCount": 16,
+    "completedCount": 7,
     "tags": [
       "master"
     ]

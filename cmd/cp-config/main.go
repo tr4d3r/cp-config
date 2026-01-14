@@ -1,18 +1,7 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "github.com/tr4d3r/cp-config/cmd/cp-config/cmd"
 
 func main() {
-	if err := run(); err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
-		os.Exit(1)
-	}
-}
-
-func run() error {
-	fmt.Println("cp-config - Copilot Configuration Manager")
-	return nil
+	cmd.Execute()
 }
