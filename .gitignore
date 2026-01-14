@@ -4,7 +4,7 @@
 *.dll
 *.so
 *.dylib
-cp-config
+/cp-config
 
 # Test binary
 *.test
