@@ -1,0 +1,11 @@
+name: work
+description: Work-related configurations for code review and testing
+agents:
+  include:
+    - code-reviewer
+  exclude: []
+skills:
+  include:
+    - debugging
+    - testing
+  exclude: []

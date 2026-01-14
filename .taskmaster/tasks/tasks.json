@@ -54,14 +54,15 @@
       "id": "5",
       "title": "Implement Profile Management",
       "description": "Create internal/profile package for managing configuration profiles.",
-      "status": "pending",
+      "status": "done",
       "priority": "medium",
       "dependencies": [
         "2",
         "3"
       ],
       "details": "Support creating, switching, listing, and deleting profiles. Store active profile state. Handle include/exclude lists for agents and skills.",
-      "subtasks": []
+      "subtasks": [],
+      "updatedAt": "2026-01-14T02:03:49.397Z"
     },
     {
       "id": "6",
@@ -212,9 +213,9 @@
   ],
   "metadata": {
     "version": "1.0.0",
-    "lastModified": "2026-01-14T01:59:55.543Z",
+    "lastModified": "2026-01-14T02:03:49.397Z",
     "taskCount": 16,
-    "completedCount": 9,
+    "completedCount": 10,
     "tags": [
       "master"
     ]

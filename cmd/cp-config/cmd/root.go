@@ -17,8 +17,8 @@ var (
 	// cfgFile stores the config file path
 	cfgFile string
 
-	// profile stores the active profile name
-	profile string
+	// profileFlag stores the active profile name from command line
+	profileFlag string
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -50,7 +50,7 @@ func Execute() {
 func init() {
 	// Global flags
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is .cp-config.yaml)")
-	rootCmd.PersistentFlags().StringVarP(&profile, "profile", "p", "default", "profile to use")
+	rootCmd.PersistentFlags().StringVarP(&profileFlag, "profile", "p", "default", "profile to use")
 
 	// Add version command
 	rootCmd.AddCommand(versionCmd)
@@ -67,5 +67,5 @@ var versionCmd = &cobra.Command{
 
 // GetProfile returns the currently selected profile
 func GetProfile() string {
-	return profile
+	return profileFlag
 }

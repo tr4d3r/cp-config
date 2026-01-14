@@ -35,3 +35,4 @@ bin/
 # Local configuration
 .env.local
 .taskmaster/.env
+.cp-config-state.yaml
